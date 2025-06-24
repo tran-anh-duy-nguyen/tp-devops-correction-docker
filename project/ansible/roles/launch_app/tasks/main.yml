@@ -1,6 +1,6 @@
 - name: Run the application
   docker_container:
-    name: app
+    name: simple-api
     image: anhduydocker/tp-devops-simple-api:latest
     networks:
       - name: app_network
