@@ -53,6 +53,8 @@ jobs:
 
       - name: Build front-end
         working-directory: devops-front
+        env:
+          VUE_APP_API_URL: ${{ secrets.VUE_APP_API_URL }}
         run: |
           yarn install
           NODE_OPTIONS=--openssl-legacy-provider yarn build
