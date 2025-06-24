@@ -40,6 +40,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Build front-end
+        working-directory: devops-front
+        run: |
+          yarn install
+          NODE_OPTIONS=--openssl-legacy-provider yarn build
+
+      - name: Copy built front to http-server folder
+        run: cp -r devops-front/dist http-server/
+
       - name: Login to DockerHub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
