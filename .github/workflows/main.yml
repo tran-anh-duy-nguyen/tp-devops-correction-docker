@@ -44,9 +44,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+          
       - name: Install Yarn
         run: npm install -g yarn
+
+      - name: Disable strict SSL for Yarn (temp fix)
+        run: yarn config set strict-ssl false
 
       - name: Build front-end
         working-directory: devops-front
