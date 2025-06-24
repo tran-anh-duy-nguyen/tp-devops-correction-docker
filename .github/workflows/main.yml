@@ -85,8 +85,8 @@ jobs:
       - name: Deploy with Ansible
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: ../project/ansible/playbook.yml
-          inventory: ../project/ansible/inventories/setup.yml
+          playbook: project/ansible/playbook.yml
+          inventory: project/ansible/inventories/setup.yml
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           options: |
