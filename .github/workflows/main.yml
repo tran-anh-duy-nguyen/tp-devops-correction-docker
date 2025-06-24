@@ -73,3 +73,22 @@ jobs:
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
+  deploy-to-server:
+  needs: build-and-push-docker-image
+  if: github.ref == 'refs/heads/main'
+  runs-on: ubuntu-24.04
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy with Ansible
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: ansible/playbook.yml
+        inventory: ansible/inventories/setup.yml
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        options: |
+          --ssh-extra-args="-o StrictHostKeyChecking=no"
+

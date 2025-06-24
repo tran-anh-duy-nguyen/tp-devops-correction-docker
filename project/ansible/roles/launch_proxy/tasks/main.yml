@@ -1,0 +1,9 @@
+- name: Run the proxy httpd
+  docker_container:
+    name: proxy
+    image: anhduydocker/tp-devops-httpd:latest
+    networks:
+      - name: app_network
+    restart_policy: always
+    ports:
+      - "80:80"

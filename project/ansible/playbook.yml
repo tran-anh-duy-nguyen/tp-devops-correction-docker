@@ -1,0 +1,22 @@
+# pour installer Docker (utilise le Python système)
+- hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3  
+
+  roles:
+    - install_docker
+
+# pour utiliser les modules docker (utilise le venv)
+- hosts: all
+  become: true
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /opt/docker_venv/bin/python  # Interpréteur du venv pour docker modules
+
+  roles:
+    - create_network
+    - launch_database
+    - launch_app
+    - launch_proxy

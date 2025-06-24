@@ -1,0 +1,12 @@
+- name: Run the application
+  docker_container:
+    name: app
+    image: anhduydocker/tp-devops-simple-api:latest
+    networks:
+      - name: app_network
+    restart_policy: always
+    ports:
+      - "8080:8080"
+    env:
+      DATABASE_HOST: database
+      DATABASE_PASSWORD: pwd

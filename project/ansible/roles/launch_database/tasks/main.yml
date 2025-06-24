@@ -1,0 +1,13 @@
+- name: Run the database
+  docker_container:
+    name: database
+    image: anhduydocker/tp-devops-database:latest
+    networks:
+      - name: app_network
+    restart_policy: always
+    ports:
+      - "5432:5432"
+    env:
+      POSTGRES_DB: db
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
