@@ -5,4 +5,4 @@ all:
   children:
     prod:
       hosts: 
-        tran-anh-duy.nguyen.takima.cloud:
+        tran-anh-duy.nguyen.takima.cloud
