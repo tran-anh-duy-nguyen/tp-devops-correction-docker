@@ -6,7 +6,6 @@ Vue.use(Router);
 
 export default new Router({
     mode: 'history',
-    base: process.env.BASE_URL,
     routes: [
         {
             path: '/',
@@ -14,7 +13,7 @@ export default new Router({
             component: Home
         },
         {
-            path: '/departments',
+             path: '/departments',
             name: 'department-list',
             component: () => import(/* webpackChunkName: "about" */ './components/DepartmentList.vue')
         },
